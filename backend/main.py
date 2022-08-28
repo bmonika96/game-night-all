@@ -1,71 +1,84 @@
+import json
 import os
 import time
 from flask_httpauth import HTTPBasicAuth
 import jwt
-from flask import Flask, jsonify, request, g
+from flask import Flask, jsonify, make_response, request, g
 from flask_restful import Resource, Api, reqparse
 import mysql.connector
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_cors import CORS, cross_origin
 
 auth = HTTPBasicAuth()
 
 app = Flask(__name__)
+CORS(app, supports_credentials=True)
 SECRET_KEY = os.environ.get('SECRET_KEY') or 'this is a secret'
 print(SECRET_KEY)
+app.config['CORS_HEADERS'] = 'Content-type'
 app.config['SECRET_KEY'] = SECRET_KEY
 api = Api(app)
 parser = reqparse.RequestParser()
 mydb = mysql.connector.connect(
-    host="localhost",
+    host="127.0.0.1",
     user="root",
     password="",
-    database="baza"
+    database="gamenight"
 )
 cursor = mydb.cursor()
 
+def _build_cors_response():
+    response = make_response()
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("Access-Control-Allow-Headers", "*")
+    response.headers.add("Access-Control-Allow-Methods", "*")
+
+def _corsify_actual_response(response):
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 ## objekti ki jih vrnejo api - dodane igre, dogodki, skupine, profil
 class DodaneIgre(Resource):
     @auth.login_required
-    def get(self):
-        try:
-            cursor.execute("""SELECT * FROM igre""")
-            rows = cursor.fetchall()
-            return jsonify(rows)
-        except Exception as e:
-            print(e)
+    @cross_origin(origin='*')
+    def options(self):
+        return _build_cors_response()
+    def get(self, uporabnisko_ime):
+        print(uporabnisko_ime)
+        cursor.execute("""SELECT * FROM igre WHERE uporabnisko_ime = %s""", [uporabnisko_ime])
+        rows = cursor.fetchall()
+        r = [dict((cursor.description[i][0], value)
+                  for i, value in enumerate(row)) for row in rows]
+        return json.dumps(r)
 
-    def post(self):
-        try:
-            parser = reqparse.RequestParser()  # initialize
 
-            parser.add_argument('ime_igre', required=True)  # add args
-            parser.add_argument('min_stevilo_igralcev', required=True)
-            parser.add_argument('max_stevilo_igralcev', required=True)
-            parser.add_argument('tezavnost', required=True)
-            parser.add_argument('dolzina_igre', required=True)
-            parser.add_argument('ocena', required=True)
-            parser.add_argument('uporabnisko_ime', required=True)
 
-            request.get_json(force=True)
-            args = parser.parse_args()  # parse arguments to dictionary
-            print(args)
+    def post(self,uporabnisko_ime):
+        parser = reqparse.RequestParser()  # initialize
+        parser.add_argument('ime_igre', required=True)  # add args
+        parser.add_argument('min_stevilo_igralcev', required=True)
+        parser.add_argument('max_stevilo_igralcev', required=True)
+        parser.add_argument('tezavnost', required=True)
+        parser.add_argument('dolzina_igre', required=True)
+        parser.add_argument('ocena', required=True)
+        parser.add_argument('slika_url', required=True)
 
-            dodaj_igro_sql = """INSERT INTO igre(ime_igre, min_stevilo_igralcev, max_stevilo_igralcev, tezavnost,
-             dolzina_igre,ocena,uporabnisko_ime) 
-                                        VALUES(%s, %s, %s, %s, %s, %s, %s)"""
-            cursor.execute(dodaj_igro_sql,
-                           [args['ime_igre'], args['min_stevilo_igralcev'], args['max_stevilo_igralcev'],
-                            args['tezavnost'], args['dolzina_igre'], args['ocena'], args['uporabnisko_ime']])
-            response = jsonify(message='Igra dodana', id=cursor.lastrowid)
-            mydb.commit()
-            # response.data = cursor.lastrowid
-            response.status_code = 200
-            return response
-        except Exception as e:
-            print(e)
-            response = jsonify('Ni dodana igra')
-            response.status_code = 400
+        request.get_json(force=True)
+        args = parser.parse_args()  # parse arguments to dictionary
+        print(args)
+
+        dodaj_igro_sql = """INSERT INTO igre(ime_igre, min_stevilo_igralcev, max_stevilo_igralcev, tezavnost,
+             dolzina_igre,ocena,slika_url,uporabnisko_ime) 
+                                        VALUES(%s, %s, %s, %s, %s, %s, %s, %s)"""
+        cursor.execute(dodaj_igro_sql,
+                       [args['ime_igre'], args['min_stevilo_igralcev'], args['max_stevilo_igralcev'],
+                        args['tezavnost'], args['dolzina_igre'], args['ocena'],args['slika_url'], uporabnisko_ime])
+        response = jsonify(message='Igra dodana', id=cursor.lastrowid)
+        mydb.commit()
+        # response.data = cursor.lastrowid
+        response.status_code = 200
+        return _corsify_actual_response(response)
+
 
     def put(self):
         try:
@@ -101,33 +114,48 @@ class DodaneIgre(Resource):
 
 class DodanaIgra(Resource):
     @auth.login_required
+    @cross_origin(origin='*')
+    def options(self):
+        return _build_cors_response()
     def get(self, id_igre):
         try:
             cursor.execute("""select * from igre WHERE ID_igre = %s""", [id_igre])
             rows = cursor.fetchall()
-            return jsonify(rows)
+            r = [dict((cursor.description[i][0], value)
+                      for i, value in enumerate(row)) for row in rows]
+            return json.dumps(r)
         except Exception as e:
             print(e)
 
 
 class Uporabniki(Resource):
     # ni še dodano za geslo
+    @cross_origin(origin='*')
+    def options(self):
+        return _build_cors_response()
     def get(self):
         try:
             cursor.execute("""select uporabnisko_ime from uporabnik""")
             rows = cursor.fetchall()
-            return jsonify(rows)
+            r = [dict((cursor.description[i][0], value)
+                      for i, value in enumerate(row)) for row in rows]
+            return json.dumps(r)
         except Exception as e:
             print(e)
 
 
 class Uporabnik(Resource):
     # ni še dodano za geslo
+    @cross_origin(origin='*')
+    def options(self):
+        return _build_cors_response()
     def get(self, uporabnisko_ime):
         try:
             cursor.execute("""select * from uporabnik WHERE uporabnisko_ime = %s""", [uporabnisko_ime])
             rows = cursor.fetchall()
-            return jsonify(rows)
+            r = [dict((cursor.description[i][0], value)
+                      for i, value in enumerate(row)) for row in rows]
+            return json.dumps(r)
         except Exception as e:
             print(e)
 
@@ -156,12 +184,16 @@ class Uporabnik(Resource):
         mydb.commit()
         # response.data = cursor.lastrowid
         response.status_code = 200
-        return response
+        return _corsify_actual_response(response)
 
 
 # skupine ki jih je dodal uporabnik
 class Skupine(Resource):
+
     @auth.login_required
+    @cross_origin(origin='*')
+    def options(self):
+        return _build_cors_response()
     def get(self):
         try:
             cursor.execute("""select * from skupine""")
@@ -194,6 +226,9 @@ class Skupine(Resource):
 
 class Skupina(Resource):
     @auth.login_required
+    @cross_origin(origin='*')
+    def options(self):
+        return _build_cors_response()
     def get(self, uporabnisko_ime, id_skupine):
         try:
             print(type(id_skupine))
@@ -208,40 +243,43 @@ class Skupina(Resource):
 # dogodki, ki jih je dodal uporabnik
 class Dogodki(Resource):
     @auth.login_required
+    @cross_origin(origin='*')
+    def options(self):
+        return _build_cors_response()
     def get(self, uporabnisko_ime):
         try:
             print(type(uporabnisko_ime))
             cursor.execute("""SELECT * FROM dogodek WHERE uporabnisko_ime = %s""", [uporabnisko_ime])
             rows = cursor.fetchall()
-            return jsonify(rows)
+            r = [dict((cursor.description[i][0], value)
+                      for i, value in enumerate(row)) for row in rows]
+            return json.dumps(r)
         except Exception as e:
             print(e)
 
-    def post(self):
-        try:
-            parser = reqparse.RequestParser()  # initialize
+    def post(self, uporabnisko_ime):
 
-            parser.add_argument('ime_skupine', required=True)
-            parser.add_argument('datum', required=True)
-            parser.add_argument('uporabnisko_ime', required=True)
+        parser = reqparse.RequestParser()  # initialize
 
-            request.get_json(force=True)
-            args = parser.parse_args()  # parse arguments to dictionary
-            print(args)
+        parser.add_argument('ime_skupine', required=True)
+        parser.add_argument('datum', required=True)
+        parser.add_argument('odigrana_igra', required=True)
+        parser.add_argument('zmagovalec', required=True)
 
-            dodaj_dogodek_sql = """INSERT INTO dogodek(ime_skupine, datum,uporabnisko_ime) 
-                                        VALUES(%s, %s, %s)"""
-            cursor.execute(dodaj_dogodek_sql,
-                           [args['ime_skupine'], args['datum'], args['uporabnisko_ime']])
-            response = jsonify(message='Dogodek dodan', id=cursor.lastrowid)
-            mydb.commit()
-            # response.data = cursor.lastrowid
-            response.status_code = 200
-            return response
-        except Exception as e:
-            print(e)
-            response = jsonify('Ni dodan dogodek')
-            response.status_code = 400
+        request.get_json(force=True)
+        args = parser.parse_args()  # parse arguments to dictionary
+        print(args)
+
+        dodaj_dogodek_sql = """INSERT INTO dogodek(ime_skupine, datum,odigrana_igra, zmagovalec,uporabnisko_ime) 
+                                        VALUES(%s, %s, %s,%s, %s)"""
+        cursor.execute(dodaj_dogodek_sql,
+                       [args['ime_skupine'], args['datum'], args['odigrana_igra'],args['datum'], uporabnisko_ime])
+        response = jsonify(message='Dogodek dodan', id=cursor.lastrowid)
+        mydb.commit()
+        # response.data = cursor.lastrowid
+        response.status_code = 200
+        return _corsify_actual_response(response)
+
 
     def delete(self, uporabnisko_ime):
         try:
@@ -266,19 +304,25 @@ class Dogodki(Resource):
 
 class Dogodek(Resource):
     @auth.login_required
+    @cross_origin(origin='*')
+    def options(self):
+        return _build_cors_response()
     def get(self, uporabnisko_ime, id_dogodka):
         try:
 
             cursor.execute("""select * from dogodek WHERE uporabnisko_ime = %s AND id_dogodka = %s""", [uporabnisko_ime,
                                                                                                         id_dogodka])
             rows = cursor.fetchall()
-            return jsonify(rows)
+            r = [dict((cursor.description[i][0], value)
+                      for i, value in enumerate(row)) for row in rows]
+            return json.dumps(r)
         except Exception as e:
             print(e)
 
 
 class OdigraneIgreIgralec(Resource):
     @auth.login_required
+    @cross_origin(origin='*')
     def get(self, uporabnisko_ime, igralec):
         try:
 
@@ -293,11 +337,14 @@ class OdigraneIgreIgralec(Resource):
 
 class OdigraneIgre(Resource):
     @auth.login_required
+    @cross_origin(origin='*')
     def get(self, uporabnisko_ime):
         try:
             cursor.execute("""select * from odigrana_igra WHERE uporabnisko_ime = %s """, [uporabnisko_ime])
             rows = cursor.fetchall()
-            return jsonify(rows)
+            r = [dict((cursor.description[i][0], value) \
+                      for i, value in enumerate(row)) for row in rows]
+            return json.dumps(r)
         except Exception as e:
             print(e)
 
@@ -326,7 +373,7 @@ class OdigraneIgre(Resource):
 
 ### Avtentikacija
 class User:
-
+    @cross_origin(origin='*')
     def hash_password(self, password):
         return generate_password_hash(password)
 
@@ -369,6 +416,7 @@ def verify_password(username_or_token, password = None):
 
 class Login(Resource):
     @auth.login_required
+    @cross_origin(supports_credentials=True, origins='*')
     def get(self):
         token = User.generate_auth_token(g.user, 600)
         return jsonify({'token': token, 'duration': 600})
@@ -380,7 +428,7 @@ api.add_resource(Skupine, '/api/skupine', endpoint='skupine')
 api.add_resource(Skupina, '/api/skupine/<string:uporabnisko_ime>/<int:id_skupine>', endpoint='skupina')
 api.add_resource(Dogodek, '/api/dogodki/<string:uporabnisko_ime>/<int:id_dogodka>', endpoint='dogodek')
 api.add_resource(Dogodki, '/api/dogodki/<string:uporabnisko_ime>', endpoint='dogodki')
-api.add_resource(DodaneIgre, '/api/igre', endpoint='igre')
+api.add_resource(DodaneIgre, '/api/igre/<string:uporabnisko_ime>', endpoint='igre')
 api.add_resource(DodanaIgra, '/api/igre/<int:id_igre>', endpoint='igra')
 api.add_resource(OdigraneIgreIgralec, '/api/odigraneigre/<string:uporabnisko_ime>/<string:igralec>',
                  endpoint='odigrana_igra')

@@ -5,7 +5,6 @@ Flask-HTTPAuth==4.7.0
 Flask-MySQLdb==0.2.0
 Flask-RESTful==0.3.9
 Jinja2==3.0.3
-mariadb==1.0.9
 MarkupSafe==2.0.1
 mysql-connector==2.2.9
 mysqlclient==2.1.0
