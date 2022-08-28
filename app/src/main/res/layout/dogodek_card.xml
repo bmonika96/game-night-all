@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="vertical"
+    android:background="@color/greyish"
+    android:layout_margin="5dp"
+    >
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+android:gravity="center_horizontal"
+        android:text="sfddfd"
+        android:layout_weight="1"
+        />
+    <TextView
+        android:id="@+id/datum"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:text="sfddfd" />
+    <TextView
+        android:id="@+id/odigrana_igra"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:layout_weight="1"
+        android:text="sfddfd" />
+    <TextView
+        android:id="@+id/zmagovalec"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:layout_weight="1"
+        android:text="sfddfd" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+</LinearLayout>
