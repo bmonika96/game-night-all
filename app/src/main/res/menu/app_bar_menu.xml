@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_dummyitem"
+        android:title="@string/dummy"
+        android:visible="false"/>
+    <item
+        android:onClick="clickedIgre"
+        android:id="@+id/navigation_igre"
+        android:title="Igre"
+
+        />
+
+    <item
+        android:id="@+id/navigation_dogodki"
+        android:onClick="clickedDogodki"
+        android:title="Dogodki" />
+
+    <item
+        android:id="@+id/navigation_Domov"
+        android:onClick="clickedDomov"
+        android:title="Domov" />
+
+</menu>

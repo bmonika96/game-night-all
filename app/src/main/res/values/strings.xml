@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">gamenight</string>
+    <string name="placeholder_datum">datum</string>
+    <string name="pregled_dogodkov">Pregled dogodkov</string>
+    <string name="xml_danasnji_datum">Današnji datum</string>
+    <string name="pregled_iger">Pregled iger</string>
+    <string name="navodilo">Navodilo</string>
+    <string name="pozdrav">Pozdravljeni</string>
+    <string name="dummy">dummy</string>
+    <string name="zgodovina_ni_vnosov">ni vnosov</string>
+    <string name="igra">igra</string>
+</resources>
