@@ -5,8 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
+    <Button
+        android:id="@+id/button_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="pojdiDodajIgro"
+        android:gravity="end"
+        android:text="Dodaj igro"/>
+    <TextView
+        android:id="@+id/textViewIgre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="Igre"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:paddingTop="10dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        />
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/textViewIgre"
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
