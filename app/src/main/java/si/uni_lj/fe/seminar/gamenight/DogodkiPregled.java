@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -81,4 +82,8 @@ public class DogodkiPregled extends AppCompatActivity {
         this.finish();
     }
 
+    public void pojdiDodajDogodek(View view) {
+        Intent intent = new Intent(DogodkiPregled.this, DodajDogodek.class);
+        startActivity(intent);
+    }
 }

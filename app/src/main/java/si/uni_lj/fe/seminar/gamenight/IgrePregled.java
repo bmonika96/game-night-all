@@ -1,12 +1,14 @@
 package si.uni_lj.fe.seminar.gamenight;
 
-import android.content.Context;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,21 +16,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class IgrePregled extends AppCompatActivity {
-    private static MyAdapterIgre adapter;
+    public  MyAdapterIgre adapter;
 
 
     GamenightApi gamenightApi;
-    private static Context context;
 
-    // Arraylist for storing data
-    private List<Igra> courseModelArrayList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +41,7 @@ public class IgrePregled extends AppCompatActivity {
         Call<String> call = gamenightApi.getIgre("admin_monika", "YWRtaW5fbW9uaWthOmFkbWlu");
         call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 String result = response.body();
                 try {
                     assert result != null;
@@ -56,12 +54,10 @@ public class IgrePregled extends AppCompatActivity {
                     jsonException.printStackTrace();
                 }
                 Log.d("object", "jobject");
-                // JSONObject oneObject = jArray.getJSONObject(1);
-                //String oneObjectsItem = oneObject.getString("ime_igre");
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
 
             }
         });
@@ -88,5 +84,9 @@ public class IgrePregled extends AppCompatActivity {
         this.finish();
     }
 
+    public void pojdiDodajIgro(View view) {
+        Intent i = new Intent(this,DodajIgro.class);
+        startActivity(i);
+    }
 }
 

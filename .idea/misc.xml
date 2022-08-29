@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/bmoni/AndroidStudioProjects/gamenight/app/src/main/res/layout/activity_dogodki.xml" value="0.16" />
-        <entry key="..\:/Users/bmoni/AndroidStudioProjects/gamenight/app/src/main/res/layout/activity_igre.xml" value="0.1625" />
+        <entry key="..\:/Users/bmoni/AndroidStudioProjects/gamenight/app/src/main/res/layout/activity_dodaj_dogodek.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/bmoni/AndroidStudioProjects/gamenight/app/src/main/res/layout/activity_dodaj_igro.xml" value="0.1" />
+        <entry key="..\:/Users/bmoni/AndroidStudioProjects/gamenight/app/src/main/res/layout/activity_dogodki.xml" value="0.1" />
+        <entry key="..\:/Users/bmoni/AndroidStudioProjects/gamenight/app/src/main/res/layout/activity_igre.xml" value="0.1" />
         <entry key="..\:/Users/bmoni/AndroidStudioProjects/gamenight/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/bmoni/AndroidStudioProjects/gamenight/app/src/main/res/layout/app_bar_menu.xml" value="0.29030797101449274" />
         <entry key="..\:/Users/bmoni/AndroidStudioProjects/gamenight/app/src/main/res/layout/dogodek_card.xml" value="0.16666666666666666" />
