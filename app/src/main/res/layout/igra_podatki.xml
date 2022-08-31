@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="5dp"
+    >
+
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_above="@+id/linear"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:padding="3dp"
+        android:scaleType="centerCrop" />
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/ime_igre"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:text="sfddfd"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/ocena"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:gravity="center_horizontal"
+        android:text="sfddfd" />
+    <TextView
+        android:id="@+id/min_st_igralcev"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:gravity="center_horizontal"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:text="sfddfd" />
+
+        <TextView
+            android:id="@+id/max_st_igralcev"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:gravity="center_horizontal"
+            android:text="sfddfd"
+            android:textColor="@android:color/black"
+            android:textSize="15sp" />
+    <TextView
+        android:id="@+id/tezavnost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:gravity="center_horizontal"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:text="sfddfd" />
+    <TextView
+        android:id="@+id/dolzina_igre"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:gravity="center_horizontal"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:text="sfddfd" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+
+</RelativeLayout>

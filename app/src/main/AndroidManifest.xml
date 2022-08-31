@@ -29,6 +29,7 @@
         <activity android:name=".DogodkiPregled"/>
         <activity android:name=".DodajIgro"/>
         <activity android:name=".DodajDogodek"/>
+        <activity android:name=".IgraPodatki"/>
     </application>
 
 </manifest>

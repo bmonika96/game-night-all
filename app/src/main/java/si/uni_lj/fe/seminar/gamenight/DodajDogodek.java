@@ -57,7 +57,7 @@ public class DodajDogodek extends AppCompatActivity {
         // TODO Auto-generated catch block
         e.printStackTrace();
     }
-    Call<ResponseBody> call = gamenightApi.dodajDogodek("admin_monika", dogodek);
+    Call<ResponseBody> call = gamenightApi.dodajDogodek("admin_monika",dogodek, "YWRtaW5fbW9uaWthOmFkbWlu");
     call.enqueue(new Callback<ResponseBody>() {
         @Override
         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
