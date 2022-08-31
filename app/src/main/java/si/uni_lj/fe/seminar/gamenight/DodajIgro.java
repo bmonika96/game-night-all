@@ -1,8 +1,10 @@
 package si.uni_lj.fe.seminar.gamenight;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +26,8 @@ public class DodajIgro extends AppCompatActivity {
     EditText dolzina_igre;
     EditText slika_url;
     GamenightApi gamenightApi;
+    Button dodaj_igro;
+
 
     public static int sheight;
     @Override
@@ -42,6 +46,37 @@ public class DodajIgro extends AppCompatActivity {
         dolzina_igre=findViewById(R.id.dolzina_igre);
         slika_url = findViewById(R.id.slika_url);
         gamenightApi = APIClient.getClient().create(GamenightApi.class);
+        dodaj_igro = findViewById(R.id.button_dodaj_igro);
+        dodaj_igro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Igra igra = new Igra();
+                igra.setIgra(
+                        ime_igre.getText().toString(),
+                        ocena.getText().toString(),
+                        tezavnost.getText().toString(),
+                        Integer.parseInt(min_stevilo_igralcev.getText().toString()),
+                        Integer.parseInt(max_stevilo_igralcev.getText().toString()),
+                        dolzina_igre.getText().toString(),
+                        slika_url.getText().toString());
+                Log.d("igra", String.valueOf(igra));
+                Call<ResponseBody> call = gamenightApi.dodajIgro("admin_monika",igra, "YWRtaW5fbW9uaWthOmFkbWlu");
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        Log.d("add", "igra dodana");
+                        Intent intent = new Intent(DodajIgro.this, IgrePregled.class);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
+
+            }
+        });
 
     }
 
@@ -51,35 +86,8 @@ public class DodajIgro extends AppCompatActivity {
         super.onStart();
 
     }
-    public void dodajIgro(View view) {
-        JSONObject igra = new JSONObject();
-        try {
-            igra.put("ime_igre", ime_igre.getText().toString());
-            igra.put("ocena", ocena.getText().toString());
-            igra.put("tezavnost", tezavnost.getText().toString());
-            igra.put("min_stevilo_igralcev", min_stevilo_igralcev.getText().toString());
-            igra.put("max_stevilo_igralcev", max_stevilo_igralcev.getText().toString());
-            igra.put("dolzina_igre", dolzina_igre.getText().toString());
-            igra.put("slika_url", slika_url.getText().toString());
 
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        Call<ResponseBody> call = gamenightApi.dodajIgro("admin_monika", igra);
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.d("add", "igra dodana");
-            }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });
-
-    }
 
 
 }

@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -15,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,7 +26,6 @@ import retrofit2.Response;
 
 public class IgrePregled extends AppCompatActivity {
     public  MyAdapterIgre adapter;
-
 
     GamenightApi gamenightApi;
 
@@ -33,11 +36,25 @@ public class IgrePregled extends AppCompatActivity {
         setContentView(R.layout.activity_igre);
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
 
+
         gamenightApi = APIClient.getClient().create(GamenightApi.class);
-        adapter = new MyAdapterIgre(getApplicationContext(), new JSONArray());
+        adapter = new MyAdapterIgre(getApplicationContext(), new JSONArray(), new IgrePregled.OnItemClickListener() {
+            @Override
+            public void onItemClick(JSONObject item) {
+                Toast.makeText(getApplicationContext(), "Item Clicked", Toast.LENGTH_LONG).show();
+                Log.d("click", "click click");
+                Intent intent = new Intent(IgrePregled.this, IgraPodatki.class);
+                intent.putExtra("igra",item.toString());
+
+                startActivity(intent);
+            }
+        });
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        }
+    @Override
+    protected void onStart() {
+        super.onStart();
         Call<String> call = gamenightApi.getIgre("admin_monika", "YWRtaW5fbW9uaWthOmFkbWlu");
         call.enqueue(new Callback<String>() {
             @Override
@@ -63,15 +80,10 @@ public class IgrePregled extends AppCompatActivity {
         });
 
 
-
-
     }
-    @Override
-    protected void onStart() {
-        super.onStart();
-
+    public interface OnItemClickListener {
+        void onItemClick(JSONObject item);
     }
-
     public void clickedIgre(MenuItem item){
 
     }

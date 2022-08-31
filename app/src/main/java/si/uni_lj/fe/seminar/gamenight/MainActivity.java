@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
 
         datum=findViewById(R.id.profil_datum);
         datum.setText(danesDatum());
-        igreField = findViewById(R.id.neka_igra);
         gamenightApi = APIClient.getClient().create(GamenightApi.class);
 
     }
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("get1ST", "1ST");
                     String oneObjectsItem = oneObject.getString("ime_igre");
                     Log.d("ime", oneObjectsItem);
-                    igreField.setText(oneObjectsItem);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

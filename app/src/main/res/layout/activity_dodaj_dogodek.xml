@@ -3,23 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/ozadjemain"
     android:layout_gravity="center_horizontal">
 
     <EditText
         android:id="@+id/ime_skupine"
         android:layout_width="match_parent"
+        android:layout_margin="20dp"
         android:layout_height="wrap_content"
         android:hint="Ime skupine" />
 
     <EditText
         android:id="@+id/datum"
         android:layout_width="match_parent"
+        android:layout_margin="20dp"
         android:layout_height="wrap_content"
         android:hint="Datum" />
 
     <EditText
         android:id="@+id/odigrana_igra"
         android:layout_width="match_parent"
+        android:layout_margin="20dp"
         android:layout_height="wrap_content"
         android:hint="Odigrana igra" />
 
@@ -27,6 +31,7 @@
         android:id="@+id/zmagovalec"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:hint="Zmagovalec" />
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,6 +40,7 @@
         <Button
             android:id="@+id/button_submit"
             android:layout_width="wrap_content"
+            android:layout_margin="20dp"
             android:layout_height="wrap_content"
             android:onClick="dodajDogodek"
             android:text="Dodaj dogodek"/>

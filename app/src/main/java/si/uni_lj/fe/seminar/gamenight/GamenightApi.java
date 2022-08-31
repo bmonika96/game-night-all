@@ -28,9 +28,9 @@ public interface GamenightApi {
     @GET("registracija")
     Call<String> registracija(@Body ResponseBody uporabnik);
 
-    @POST("dogodki/dodaj")
-    Call<ResponseBody> dodajDogodek(String admin_monika, JSONObject dogodek);
+    @POST("dogodki/{uporabnisko_ime}")
+    Call<ResponseBody> dodajDogodek(@Path("uporabnisko_ime") String uporabnisko_ime,@Body JSONObject dogodek,@Header("Authorization") String basicToken);
 
-    @POST("igre/dodaj")
-    Call<ResponseBody> dodajIgro(String admin_monika, JSONObject igra);
+    @POST("igre/{uporabnisko_ime}")
+    Call<ResponseBody> dodajIgro(@Path("uporabnisko_ime") String uporabnisko_ime,@Body Igra igra, @Header("Authorization") String basicToken);
 }

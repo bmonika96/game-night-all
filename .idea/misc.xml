@@ -13,10 +13,19 @@
         <entry key="..\:/Users/bmoni/AndroidStudioProjects/gamenight/app/src/main/res/layout/igraCard.xml" value="0.18385416666666668" />
         <entry key="..\:/Users/bmoni/AndroidStudioProjects/gamenight/app/src/main/res/layout/igra_card.xml" value="0.1" />
         <entry key="..\:/Users/bmoni/AndroidStudioProjects/gamenight/app/src/main/res/menu/app_bar_menu.xml" value="0.18489583333333334" />
+        <entry key="app/src/main/res/drawable/border.xml" value="0.146" />
+        <entry key="app/src/main/res/layout/activity_dodaj_dogodek.xml" value="0.18297101449275363" />
+        <entry key="app/src/main/res/layout/activity_dodaj_igro.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_dogodki.xml" value="0.18297101449275363" />
+        <entry key="app/src/main/res/layout/activity_igre.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.19333953857421876" />
+        <entry key="app/src/main/res/layout/dogodek_card.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/igra_card.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/igra_podatki.xml" value="0.1013909912109375" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

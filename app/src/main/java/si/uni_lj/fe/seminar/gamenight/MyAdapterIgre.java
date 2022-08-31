@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,19 +15,23 @@ import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MyAdapterIgre extends RecyclerView.Adapter<MyAdapterIgre.MyViewHolder> {
 
     private JSONArray igre;
+    private IgrePregled.OnItemClickListener listener;
 
 
     public void setData(JSONArray igre) {
         this.igre = igre;
+
         notifyDataSetChanged();
     }
 
-    public MyAdapterIgre(Context context, JSONArray igre) {
+    public MyAdapterIgre(Context context, JSONArray igre, IgrePregled.OnItemClickListener listener) {
         mInflater = LayoutInflater.from(context);
+        this.listener = listener;
         this.mContext = context;
         this.igre = igre;
     }
@@ -45,6 +50,14 @@ public class MyAdapterIgre extends RecyclerView.Adapter<MyAdapterIgre.MyViewHold
             this.textViewVersion = (TextView) itemView.findViewById(R.id.ocena);
             this.imageViewIcon = (ImageView) itemView.findViewById(R.id.photo);
         }
+
+        public void bind(JSONObject jsonObject, IgrePregled.OnItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    listener.onItemClick(jsonObject);
+                }
+            });
+        }
     }
     private final LayoutInflater mInflater;
     private Context mContext;
@@ -54,7 +67,6 @@ public class MyAdapterIgre extends RecyclerView.Adapter<MyAdapterIgre.MyViewHold
                                            int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.igra_card, parent, false);
-
 
         MyViewHolder myViewHolder = new MyViewHolder(view);
         return myViewHolder;
@@ -96,6 +108,11 @@ public class MyAdapterIgre extends RecyclerView.Adapter<MyAdapterIgre.MyViewHold
         }
         else {
             Log.e("spet neki", "spet");
+        }
+        try {
+            holder.bind(igre.getJSONObject(listPosition), listener);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 
