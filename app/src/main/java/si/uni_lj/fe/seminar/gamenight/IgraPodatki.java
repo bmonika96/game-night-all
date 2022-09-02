@@ -56,7 +56,7 @@ public class IgraPodatki extends AppCompatActivity {
             ime_igre.setText("Ime igre: "+igra.getString("ime_igre"));
             ocena.setText("Ocena: "+ igra.getString(  "ocena"));
             min_st_igralcev.setText("Minimalno število igralcev:"+ igra.getString("min_stevilo_igralcev"));
-            max_st_igralcev.setText("Maksimalno število igralcev:"+igra.getString("min_stevilo_igralcev"));
+            max_st_igralcev.setText("Maksimalno število igralcev:"+igra.getString("max_stevilo_igralcev"));
             tezavnost.setText("Težavnost:"+igra.getString("tezavnost"));
             dolzina.setText("Dolžina igre: "+igra.getString("dolzina_igre"));
 

@@ -1,26 +1,39 @@
 package si.uni_lj.fe.seminar.gamenight;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DodajDogodek extends AppCompatActivity {
+public  class DodajDogodek extends AppCompatActivity{
     EditText ime_skupine;
     EditText datum;
-    EditText odigrana_igra;
     EditText zmagovalec;
     GamenightApi gamenightApi;
+    JSONArray igre;
+    ArrayList<String> imena = new ArrayList<String>();
+    Spinner spinner;
+    ArrayAdapter<String> adapter;
 
     public static int sheight;
     @Override
@@ -33,35 +46,85 @@ public class DodajDogodek extends AppCompatActivity {
 
         ime_skupine=findViewById(R.id.ime_skupine);
         datum=findViewById(R.id.datum);
-        odigrana_igra=findViewById(R.id.odigrana_igra);
         zmagovalec = findViewById(R.id.zmagovalec);
         gamenightApi = APIClient.getClient().create(GamenightApi.class);
+        spinner =  (Spinner) findViewById(R.id.spinner);
+        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, imena);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            int selectionCurrent = spinner.getSelectedItemPosition();
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                if (selectionCurrent != position){
+                    // Your code here
+                }
+                selectionCurrent= position;
+            }
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Your code here
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         Log.d("tag", "printing");
         super.onStart();
+        Call<String> call = gamenightApi.getIgre("admin_monika", "YWRtaW5fbW9uaWthOmFkbWlu");
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                String result = response.body();
+                try {
+                    assert result != null;
+                    igre = new JSONArray(result);
+                    imena.add(0, "Izberi odigrano igro");
+                    for (int index = 0; index < igre.length(); index++) {
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = igre.getJSONObject(index);
+                            String ime = jsonObject.getString("ime_igre");
+                            imena.add(ime);
+                            adapter.notifyDataSetChanged();
 
-    }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    Log.d("igre", String.valueOf(imena));
+
+                } catch (JSONException jsonException) {
+                    jsonException.printStackTrace();
+                }
+                Log.d("object", "jobject");
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+
+            }
+        });
+
+}
+
+
     public void dodajDogodek(View view) {
-    JSONObject dogodek = new JSONObject();
-    try {
-        dogodek.put("ime_skupine", ime_skupine.getText().toString());
-        dogodek.put("datum", datum.getText().toString());
-        dogodek.put("odigrana_igra", odigrana_igra.getText().toString());
-        dogodek.put("zmagovalec", zmagovalec.getText().toString());
-
-    } catch (JSONException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-    }
+    Dogodek dogodek = new Dogodek();
+    dogodek.setDogodek(ime_skupine.getText().toString(), datum.getText().toString(),String.valueOf(spinner.getSelectedItem()),zmagovalec.getText().toString());
+    Log.d("dogodek", String.valueOf(dogodek));
     Call<ResponseBody> call = gamenightApi.dodajDogodek("admin_monika",dogodek, "YWRtaW5fbW9uaWthOmFkbWlu");
     call.enqueue(new Callback<ResponseBody>() {
         @Override
         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
             Log.d("add", "dogodek dodan");
+            Intent i = new Intent(DodajDogodek.this,DogodkiPregled.class);
+            startActivity(i);
         }
 
         @Override
@@ -71,6 +134,4 @@ public class DodajDogodek extends AppCompatActivity {
     });
 
 }
-
-
 }

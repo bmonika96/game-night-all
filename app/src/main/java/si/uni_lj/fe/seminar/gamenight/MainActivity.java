@@ -95,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, DogodkiPregled.class);
         startActivity(intent);
     }
+    public void pojdiPredlagalnik(View view) {
+        Intent intent = new Intent(MainActivity.this, Predlagalnik.class);
+        startActivity(intent);
+    }
 
    // public void odpri_nov_vnos_dogodki(View view) {
      //   Intent intent = new Intent(this, NovVnosDogodek.class);

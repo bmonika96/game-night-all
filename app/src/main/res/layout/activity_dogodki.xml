@@ -7,31 +7,47 @@
     android:layout_height="match_parent"
     android:background="@drawable/ozadjemain"
     android:orientation="vertical">
-    <Button
-        android:id="@+id/button_submit"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearViewDogodki"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="pojdiDodajDogodek"
-        android:gravity="end"
-        android:text="Dodaj dogodek"/>
-    <TextView
-        android:id="@+id/textViewDogodki"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="Dogodki"
-        android:gravity="center_horizontal"
-        android:textStyle="bold"
-        android:paddingTop="10dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-      />
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:weightSum="1" >
+        <TextView
+            android:id="@+id/textViewDogodki"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:text="Dogodki"
+            android:gravity="center_vertical"
+            android:layout_weight="0.3"
+            android:textStyle="bold"
+            android:paddingTop="10dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:layout_gravity="top|center_horizontal"
+
+            />
+        <Button
+            android:id="@+id/button_submit"
+            android:layout_weight="0.7"
+            android:textSize="13sp"
+            android:layout_height="wrap_content"
+            android:onClick="pojdiDodajDogodek"
+            android:layout_width="match_parent"
+            android:gravity="end"
+            android:text="Dodaj"
+            android:backgroundTint="@color/button_color"
+            android:layout_gravity="top|right"
+            />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/textViewDogodki"
+        android:layout_below="@+id/linearViewDogodki"
         />
 
 

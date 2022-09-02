@@ -8,5 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="greyish">#E0E0E0</color>
+    <color name="button_color">#8a8b8b</color>
+    <color name="pasice">#BF3F3F3E</color>
 
 </resources>

@@ -52,26 +52,38 @@
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:text="@string/pregled_iger"
-            android:background="@null"
             android:id="@+id/preglediger"
             android:textSize="20sp"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:onClick="odpriIgre"
-            android:backgroundTint="@color/cardview_dark_background"
+
+
+
 
             />
         <Button
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:text="@string/pregled_dogodkov"
-
             android:id="@+id/novVnos"
-            android:layout_marginBottom="50dp"
             android:textSize="20sp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:onClick="odpriDogodki"
+            android:backgroundTint="@color/cardview_dark_background"
+
+            />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:text="Predlagalnik"
+            android:id="@+id/predlagalnik"
+            android:layout_marginBottom="20dp"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:onClick="pojdiPredlagalnik"
             android:backgroundTint="@color/cardview_dark_background"
 
             />

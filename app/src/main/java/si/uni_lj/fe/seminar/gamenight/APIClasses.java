@@ -95,6 +95,34 @@ class Igra {
         return slika_url;
     }
 }
+class Dogodek {
+    private String ime_skupine;
+    private String datum;
+    private String odigrana_igra;
+    private String zmagovalec;
+
+    public void setDogodek(String ime_skupine, String datum, String odigrana_igra, String zmagovalec){
+        this.ime_skupine = ime_skupine;
+        this.datum = datum;
+        this.odigrana_igra = odigrana_igra;
+        this.zmagovalec = zmagovalec;
+    }
+    public String getIme_skupine() {
+        return ime_skupine;
+    }
+
+    public String getDatum() {
+        return datum;
+    }
+
+    public String getOdigrana_igra() {
+        return odigrana_igra;
+    }
+
+    public String getZmagovalec() {
+        return zmagovalec;
+    }
+}
 
 
 

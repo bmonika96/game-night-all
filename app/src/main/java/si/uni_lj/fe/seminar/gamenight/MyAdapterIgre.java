@@ -41,13 +41,11 @@ public class MyAdapterIgre extends RecyclerView.Adapter<MyAdapterIgre.MyViewHold
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView textViewName;
-        TextView textViewVersion;
         ImageView imageViewIcon;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             this.textViewName = (TextView) itemView.findViewById(R.id.title);
-            this.textViewVersion = (TextView) itemView.findViewById(R.id.ocena);
             this.imageViewIcon = (ImageView) itemView.findViewById(R.id.photo);
         }
 
@@ -79,16 +77,10 @@ public class MyAdapterIgre extends RecyclerView.Adapter<MyAdapterIgre.MyViewHold
             try {
                 if(igre.getJSONObject(listPosition) != null) {
                     TextView textViewName = holder.textViewName;
-                    TextView textViewVersion = holder.textViewVersion;
                     ImageView imageView = holder.imageViewIcon;
 
                     try {
                         textViewName.setText(igre.getJSONObject(listPosition).getString("ime_igre"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    try {
-                        textViewVersion.setText(igre.getJSONObject(listPosition).getString("ocena"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -99,7 +91,6 @@ public class MyAdapterIgre extends RecyclerView.Adapter<MyAdapterIgre.MyViewHold
                 else {
                     holder.textViewName.setText("nothing");
                     holder.imageViewIcon.setImageResource(R.drawable.ozadje);
-                    holder.textViewVersion.setText("ocena");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

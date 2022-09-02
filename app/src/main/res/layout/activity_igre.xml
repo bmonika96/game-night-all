@@ -9,13 +9,20 @@
     android:orientation="vertical"
     android:background="@drawable/ozadjemain"
     >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:orientation="horizontal"
+        android:weightSum="1" >
     <TextView
         android:id="@+id/textViewIgre"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="30dp"
         android:text="Igre"
-        android:gravity="center_horizontal"
+        android:gravity="center_vertical"
+        android:layout_weight="0.4"
         android:textStyle="bold"
         android:paddingTop="10dp"
         android:paddingLeft="8dp"
@@ -25,17 +32,18 @@
         />
     <Button
         android:id="@+id/button_submit"
-        android:layout_width="wrap_content"
+        android:layout_weight="0.6"
         android:layout_height="wrap_content"
         android:onClick="pojdiDodajIgro"
+        android:layout_width="match_parent"
         android:gravity="end"
         android:text="Dodaj igro"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@color/button_color"
         android:layout_gravity="top|right"
         />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@+id/textViewIgre"
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
