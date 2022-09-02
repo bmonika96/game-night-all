@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:id="@+id/naslov"
+        android:layout_gravity="center"
+        android:text="Predlagalnik igre"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:id="@+id/navodilo"
+        android:layout_gravity="center"
+        android:text="Pritisni gumb za predlaganje igre"
+        />
+
+        <Button
+            android:id="@+id/close_dialog_button_ok"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:text="Predlagaj igro"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:onClick="predlagajIgro"
+            android:layout_marginTop="10dip" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:id="@+id/rezultat_igra"
+        android:layout_gravity="center"
+        android:text="Predlagana igra: Ni predlagane igre"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:id="@+id/kockomet"
+        android:layout_gravity="center"
+        android:text="Kockomet"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:id="@+id/navodilo_kocka"
+        android:layout_gravity="center"
+        android:text="Pritisni na gumb za met kocke."
+        />
+        <Button
+            android:id="@+id/close_dialog_button_cancel"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:text="Vrzi kocko"
+            android:onClick="vrziKocko"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginTop="10dip"
+            android:layout_marginBottom="5dip" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:id="@+id/stevilka"
+        android:layout_gravity="center"
+        android:text="0"
+        />
+
+    </LinearLayout>

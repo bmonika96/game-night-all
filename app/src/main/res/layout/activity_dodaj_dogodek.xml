@@ -20,13 +20,12 @@
         android:layout_height="wrap_content"
         android:hint="Datum" />
 
-    <EditText
-        android:id="@+id/odigrana_igra"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="fill_parent"
         android:layout_margin="20dp"
         android:layout_height="wrap_content"
-        android:hint="Odigrana igra" />
-
+        android:spinnerMode="dropdown"/>
     <EditText
         android:id="@+id/zmagovalec"
         android:layout_width="match_parent"

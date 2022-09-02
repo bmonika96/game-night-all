@@ -64,7 +64,11 @@ public class MyAdapterDogodki extends RecyclerView.Adapter<MyAdapterDogodki.MyVi
 
     @Override
     public void onBindViewHolder(final MyAdapterDogodki.MyViewHolder holder, final int listPosition) {
-
+        try {
+            Log.d("g", String.valueOf(dogodki.getJSONObject(listPosition)));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         if(this.dogodki != null) {
             try {
                 if(dogodki.getJSONObject(listPosition) != null) {

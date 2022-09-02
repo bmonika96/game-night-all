@@ -30,6 +30,7 @@
         <activity android:name=".DodajIgro"/>
         <activity android:name=".DodajDogodek"/>
         <activity android:name=".IgraPodatki"/>
+        <activity android:name=".Predlagalnik"/>
     </application>
 
 </manifest>
