@@ -57,7 +57,13 @@ public class Prijava extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<LoginPodatki> call, @NonNull Response<LoginPodatki> response) {
                 LoginPodatki result = response.body();
-                assert result != null && result.getToken() != null;
+                if(result == null) {
+                    Log.d("result nope", String.valueOf(call));
+                    Toast.makeText(Prijava.this, "Napačni prijavni podatki", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Log.d("result", String.valueOf(result));
+                assert result.getToken() != null;
                 SharedPreferences preferences = getSharedPreferences("cred", MODE_PRIVATE);
                 preferences.edit().putString("cred", token).apply();
                 preferences.edit().putString("uporabnisko_ime", userName).apply();
@@ -66,7 +72,8 @@ public class Prijava extends AppCompatActivity {
             }
             @Override
             public void onFailure(@NonNull Call<LoginPodatki> call, @NonNull Throwable t) {
-                Log.d("Login", "Login data wrong");
+                Log.d("result nope", String.valueOf(call));
+                Toast.makeText(Prijava.this, "Napačni prijavni podatki", Toast.LENGTH_SHORT).show();
             }
         });
         }
