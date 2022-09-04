@@ -14,7 +14,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:padding="3dp"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/igra_podatki_slika_url" />
     <LinearLayout
         android:id="@+id/linear"
         android:layout_width="match_parent"
@@ -28,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
-            android:text="sfddfd"
+            android:text="@string/dodaj_ime_igre"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -36,48 +37,43 @@
         android:id="@+id/ocena"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:textColor="@android:color/black"
         android:textSize="15sp"
         android:gravity="center_horizontal"
-        android:text="sfddfd" />
+        android:text="@string/dodaj_ocena" />
     <TextView
         android:id="@+id/min_st_igralcev"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:gravity="center_horizontal"
         android:textColor="@android:color/black"
         android:textSize="15sp"
-        android:text="sfddfd" />
+        android:text="@string/dodaj_minimalno_st_igralcev" />
 
         <TextView
             android:id="@+id/max_st_igralcev"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:gravity="center_horizontal"
-            android:text="sfddfd"
+            android:text="@string/igra_podatki_max_igr"
             android:textColor="@android:color/black"
             android:textSize="15sp" />
     <TextView
         android:id="@+id/tezavnost"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:gravity="center_horizontal"
         android:textColor="@android:color/black"
         android:textSize="15sp"
-        android:text="sfddfd" />
+        android:text="@string/dodaj_tezavnost" />
     <TextView
         android:id="@+id/dolzina_igre"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:gravity="center_horizontal"
         android:textColor="@android:color/black"
         android:textSize="15sp"
-        android:text="sfddfd" />
+        android:text="@string/dodaj_dolzina_igre" />
     </LinearLayout>
 
     <View

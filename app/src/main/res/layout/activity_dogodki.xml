@@ -18,8 +18,8 @@
             android:id="@+id/textViewDogodki"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:text="Dogodki"
+            android:textSize="30sp"
+            android:text="@string/dogodki"
             android:gravity="center_vertical"
             android:layout_weight="0.3"
             android:textStyle="bold"
@@ -31,16 +31,15 @@
             />
         <Button
             android:id="@+id/button_submit"
-            android:layout_weight="0.7"
-            android:textSize="13sp"
-            android:layout_height="wrap_content"
-            android:onClick="pojdiDodajDogodek"
             android:layout_width="match_parent"
-            android:gravity="end"
-            android:text="Dodaj"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_weight="0.7"
             android:backgroundTint="@color/button_color"
-            android:layout_gravity="top|right"
-            />
+            android:gravity="end"
+            android:onClick="pojdiDodajDogodek"
+            android:text="@string/dodaj"
+            android:textSize="13sp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

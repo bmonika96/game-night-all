@@ -1,5 +1,4 @@
 package si.uni_lj.fe.seminar.gamenight;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,26 +6,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class IgraPodatki extends AppCompatActivity {
 
     ImageView photo;
-    GamenightApi gamenightApi;
     TextView ime_igre;
     TextView ocena ;
     TextView tezavnost;
@@ -54,12 +41,12 @@ public class IgraPodatki extends AppCompatActivity {
         try {
             JSONObject igra = new JSONObject(getIntent().getStringExtra("igra"));
             Log.d("igraaa", String.valueOf(igra));
-            ime_igre.setText("Ime igre: "+igra.getString("ime_igre"));
-            ocena.setText("Ocena: "+ igra.getString(  "ocena"));
-            min_st_igralcev.setText("Minimalno število igralcev:"+ igra.getString("min_stevilo_igralcev"));
-            max_st_igralcev.setText("Maksimalno število igralcev:"+igra.getString("max_stevilo_igralcev"));
-            tezavnost.setText("Težavnost:"+igra.getString("tezavnost"));
-            dolzina.setText("Dolžina igre: "+igra.getString("dolzina_igre"));
+            ime_igre.setText(String.format("%s%s", getString(R.string.igra_podatki_ime), igra.getString("ime_igre")));
+            ocena.setText(String.format("%s%s", getString(R.string.igra_podatki_ocena), igra.getString("ocena")));
+            min_st_igralcev.setText(String.format("%s%s", getString(R.string.igra_podatki_min_igr), igra.getString("min_stevilo_igralcev")));
+            max_st_igralcev.setText(String.format("%s%s", getString(R.string.igra_podatki_max_igr), igra.getString("max_stevilo_igralcev")));
+            tezavnost.setText(String.format("%s%s", getString(R.string.igra_podatki_tezavnost), igra.getString("tezavnost")));
+            dolzina.setText(String.format("%s%s", getString(R.string.igra_podatki_slika_url), igra.getString("dolzina_igre")));
 
             Glide.with(this).load(igra.getString("slika_url")).into(photo);
 

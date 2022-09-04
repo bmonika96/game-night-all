@@ -1,5 +1,6 @@
 package si.uni_lj.fe.seminar.gamenight;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,12 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,9 +19,9 @@ import org.json.JSONObject;
 public class MyAdapterIgre extends RecyclerView.Adapter<MyAdapterIgre.MyViewHolder> {
 
     private JSONArray igre;
-    private IgrePregled.OnItemClickListener listener;
+    private final IgrePregled.OnItemClickListener listener;
 
-
+    @SuppressLint("NotifyDataSetChanged")
     public void setData(JSONArray igre) {
         this.igre = igre;
 
@@ -30,7 +29,7 @@ public class MyAdapterIgre extends RecyclerView.Adapter<MyAdapterIgre.MyViewHold
     }
 
     public MyAdapterIgre(Context context, JSONArray igre, IgrePregled.OnItemClickListener listener) {
-        mInflater = LayoutInflater.from(context);
+        LayoutInflater mInflater = LayoutInflater.from(context);
         this.listener = listener;
         this.mContext = context;
         this.igre = igre;
@@ -50,29 +49,24 @@ public class MyAdapterIgre extends RecyclerView.Adapter<MyAdapterIgre.MyViewHold
         }
 
         public void bind(JSONObject jsonObject, IgrePregled.OnItemClickListener listener) {
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
-                    listener.onItemClick(jsonObject);
-                }
-            });
+            itemView.setOnClickListener(v -> listener.onItemClick(jsonObject));
         }
     }
-    private final LayoutInflater mInflater;
-    private Context mContext;
 
+    private final Context mContext;
+
+    @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent,
                                            int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.igra_card, parent, false);
 
-        MyViewHolder myViewHolder = new MyViewHolder(view);
-        return myViewHolder;
+        return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, final int listPosition) {
-        String word = "";
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int listPosition) {
         if(this.igre != null) {
             try {
                 if(igre.getJSONObject(listPosition) != null) {
@@ -89,7 +83,7 @@ public class MyAdapterIgre extends RecyclerView.Adapter<MyAdapterIgre.MyViewHold
 
                 }
                 else {
-                    holder.textViewName.setText("nothing");
+                    holder.textViewName.setText(R.string.problem_dogodki_pregled);
                     holder.imageViewIcon.setImageResource(R.drawable.ozadje);
                 }
             } catch (JSONException e) {
@@ -98,7 +92,7 @@ public class MyAdapterIgre extends RecyclerView.Adapter<MyAdapterIgre.MyViewHold
 
         }
         else {
-            Log.e("spet neki", "spet");
+            Log.e("tezava", "nekaj je slo narobe");
         }
         try {
             holder.bind(igre.getJSONObject(listPosition), listener);

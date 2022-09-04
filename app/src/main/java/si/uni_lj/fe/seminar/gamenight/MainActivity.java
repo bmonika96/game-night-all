@@ -5,32 +5,16 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.Calendar;
 import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
-
     TextView datum;
     GamenightApi gamenightApi;
 
-    public static int sheight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences preferences = getSharedPreferences("cred", MODE_PRIVATE);
@@ -41,14 +25,8 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, Prijava.class);
             startActivity(intent);
         }
-
-
-        Log.d("tag", "printing");
         super.onCreate(savedInstanceState);
-        Log.d("tag", "printing");
         setContentView(R.layout.activity_main);
-
-
         datum=findViewById(R.id.profil_datum);
         datum.setText(danesDatum());
         gamenightApi = APIClient.getClient().create(GamenightApi.class);

@@ -8,17 +8,19 @@
 
     <EditText
         android:id="@+id/ime_skupine"
+        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_margin="20dp"
         android:layout_height="wrap_content"
-        android:hint="Ime skupine" />
+        android:hint="@string/dodaj_dogodek_ime_skupine" />
 
     <EditText
         android:id="@+id/datum"
         android:layout_width="match_parent"
+        android:inputType="text"
         android:layout_margin="20dp"
         android:layout_height="wrap_content"
-        android:hint="Datum" />
+        android:hint="@string/dodaj_dogodekdatum" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -30,8 +32,9 @@
         android:id="@+id/zmagovalec"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="text"
         android:layout_margin="20dp"
-        android:hint="Zmagovalec" />
+        android:hint="@string/dodaj_dogodek_zmagovalec" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -42,7 +45,7 @@
             android:layout_margin="20dp"
             android:layout_height="wrap_content"
             android:onClick="dodajDogodek"
-            android:text="Dodaj dogodek"/>
+            android:text="@string/dodaj_dogodek_gumb"/>
 
 
     </LinearLayout>

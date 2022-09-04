@@ -1,23 +1,16 @@
 package si.uni_lj.fe.seminar.gamenight;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,7 +25,6 @@ public class Registracija extends AppCompatActivity {
     EditText email;
     Button registracija;
 
-    public static int sheight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,64 +45,45 @@ public class Registracija extends AppCompatActivity {
         Call<String> call = gamenightApi.registracija(uporabnik);
         call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 String result = response.body();
                 Toast.makeText(Registracija.this, "Registracija uspešna", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(Registracija.this, Prijava.class);
                 startActivity(intent);
-
             }
-
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                 Log.d("Login", "Login data wrong");
                 Toast.makeText(Registracija.this, "Nekaj je šlo narobe", Toast.LENGTH_SHORT).show();
-
             }
         });
-
-
-
     }
 
     @Override
     protected void onStart() {
         Log.d("tag", "printing");
         super.onStart();
-        registracija.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        registracija.setOnClickListener(v -> {
+            String uporabnisko_ime_string = uporabnisko_ime.getText().toString();
+            String geslo_string = geslo.getText().toString();
+            String ponovi_geslo_string = ponovi_geslo.getText().toString();
+            String ime_string = ime.getText().toString();
+            String priimek_string = priimek.getText().toString();
+            String email_string = email.getText().toString();
 
-
-                // on below line we are getting data from our edit text.
-                String uporabnisko_ime_string = uporabnisko_ime.getText().toString();
-                String geslo_string = geslo.getText().toString();
-                String ponovi_geslo_string = ponovi_geslo.getText().toString();
-                String ime_string = ime.getText().toString();
-                String priimek_string = priimek.getText().toString();
-                String email_string = email.getText().toString();
-
-                if(!geslo_string.equals(ponovi_geslo_string)) {
-                    Toast.makeText(Registracija.this, "Gesli se ne ujemata", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                ;
-                // checking if the entered text is empty or not.
-                if (TextUtils.isEmpty(uporabnisko_ime_string) && TextUtils.isEmpty(geslo_string)) {
-                    Toast.makeText(Registracija.this, "Vpišite podatke za prijavo", Toast.LENGTH_SHORT).show();
-                }
-
-                // calling a method to login our user.
-                registerUser(uporabnisko_ime_string, ime_string, priimek_string, geslo_string, email_string);
+            if(!geslo_string.equals(ponovi_geslo_string)) {
+                Toast.makeText(Registracija.this, "Gesli se ne ujemata", Toast.LENGTH_SHORT).show();
+                return;
             }
+            if (TextUtils.isEmpty(uporabnisko_ime_string) && TextUtils.isEmpty(geslo_string)) {
+                Toast.makeText(Registracija.this, "Vpišite podatke za prijavo", Toast.LENGTH_SHORT).show();
+            }
+            registerUser(uporabnisko_ime_string, ime_string, priimek_string, geslo_string, email_string);
         });
-
     }
-
     public void odpriPrijava(View view) {
         Intent intent = new Intent(Registracija.this, Prijava.class);
         startActivity(intent);
     }
-
 }

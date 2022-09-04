@@ -1,28 +1,17 @@
 package si.uni_lj.fe.seminar.gamenight;
-
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.Objects;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -53,16 +42,10 @@ public class IgrePregled extends AppCompatActivity {
 
 
         gamenightApi = APIClient.getClient().create(GamenightApi.class);
-        adapter = new MyAdapterIgre(getApplicationContext(), new JSONArray(), new IgrePregled.OnItemClickListener() {
-            @Override
-            public void onItemClick(JSONObject item) {
-                Toast.makeText(getApplicationContext(), "Item Clicked", Toast.LENGTH_LONG).show();
-                Log.d("click", "click click");
-                Intent intent = new Intent(IgrePregled.this, IgraPodatki.class);
-                intent.putExtra("igra",item.toString());
-
-                startActivity(intent);
-            }
+        adapter = new MyAdapterIgre(getApplicationContext(), new JSONArray(), item -> {
+            Intent intent = new Intent(IgrePregled.this, IgraPodatki.class);
+            intent.putExtra("igra",item.toString());
+            startActivity(intent);
         });
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -79,8 +62,6 @@ public class IgrePregled extends AppCompatActivity {
                     assert result != null;
                     JSONArray igre = new JSONArray(result);
                     adapter.setData(igre);
-                    Log.d("igre", String.valueOf(igre));
-
 
                 } catch (JSONException jsonException) {
                     jsonException.printStackTrace();
@@ -98,17 +79,6 @@ public class IgrePregled extends AppCompatActivity {
     }
     public interface OnItemClickListener {
         void onItemClick(JSONObject item);
-    }
-    public void clickedIgre(MenuItem item){
-
-    }
-    public void clickedDogodki(MenuItem item){
-        this.finish();
-    }
-    public void clickedDomov(MenuItem item){
-        Intent i = new Intent(this,MainActivity.class);
-        startActivity(i);
-        this.finish();
     }
 
     public void pojdiDodajIgro(View view) {

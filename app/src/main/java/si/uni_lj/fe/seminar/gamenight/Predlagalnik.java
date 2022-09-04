@@ -4,18 +4,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,11 +26,13 @@ public class Predlagalnik extends AppCompatActivity {
     TextView stevilka ;
     JSONArray igre;
     String token;
+    String uporabnisko_ime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences preferences = getSharedPreferences("cred", MODE_PRIVATE);
         String tokenSP = preferences.getString("cred","");
+        String usernameSP = preferences.getString("uporabnisko_ime","");
         if(Objects.equals(tokenSP, "")) {
             Log.d("cred", "token is null");
             Intent intent = new Intent(Predlagalnik.this, Prijava.class);
@@ -46,6 +40,7 @@ public class Predlagalnik extends AppCompatActivity {
         }
         else {
             token = tokenSP;
+            uporabnisko_ime = usernameSP;
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.predlagalnik);
@@ -56,7 +51,7 @@ public class Predlagalnik extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Call<String> call = gamenightApi.getIgre("admin_monika", token);
+        Call<String> call = gamenightApi.getIgre(uporabnisko_ime, token);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
@@ -64,17 +59,14 @@ public class Predlagalnik extends AppCompatActivity {
                 try {
                     assert result != null;
                     igre = new JSONArray(result);
-                    Log.d("igre", String.valueOf(igre));
 
                 } catch (JSONException jsonException) {
                     jsonException.printStackTrace();
                 }
-                Log.d("object", "jobject");
             }
 
             @Override
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-
             }
         });
     }
@@ -87,13 +79,10 @@ public class Predlagalnik extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
     public void vrziKocko(View view) {
         Random rand = new Random();
-        Log.d("stevilka", "pride v funkcijo");
-        int n = rand.nextInt(6)+1; // vrne med 0 5
-        Log.d("stevilka", String.valueOf(n));
+        int n = rand.nextInt(6)+1; // vrne med (0 5) +1
         stevilka.setText(String.valueOf(n));
     }
 }
