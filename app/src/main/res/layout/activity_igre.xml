@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:background="@drawable/ozadjemain"
     >
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
@@ -19,8 +19,8 @@
         android:id="@+id/textViewIgre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="Igre"
+        android:textSize="30sp"
+        android:text="@string/igre"
         android:gravity="center_vertical"
         android:layout_weight="0.4"
         android:textStyle="bold"
@@ -37,9 +37,9 @@
         android:onClick="pojdiDodajIgro"
         android:layout_width="match_parent"
         android:gravity="end"
-        android:text="Dodaj igro"
+        android:text="@string/dodaj_igro_gumb"
         android:backgroundTint="@color/button_color"
-        android:layout_gravity="top|right"
+        android:layout_gravity="top|end"
         />
     </LinearLayout>
 

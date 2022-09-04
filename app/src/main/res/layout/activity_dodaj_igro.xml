@@ -9,24 +9,27 @@
 
     <EditText
         android:id="@+id/ime_igre"
+        android:inputType="text"
         android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ime Igre" />
+        android:hint="@string/dodaj_ime_igre" />
 
     <EditText
         android:id="@+id/ocena"
+        android:inputType="text"
         android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ocena" />
+        android:hint="@string/dodaj_ocena" />
 
     <EditText
         android:id="@+id/tezavnost"
+        android:inputType="text"
         android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Težavnost" />
+        android:hint="@string/dodaj_tezavnost" />
 
     <EditText
         android:id="@+id/min_stevilo_igralcev"
@@ -34,26 +37,28 @@
         android:layout_margin="20dp"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:hint="Minimalno št. igralcev" />
+        android:hint="@string/dodaj_minimalno_st_igralcev" />
     <EditText
         android:id="@+id/max_stevilo_igralcev"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:inputType="number"
-        android:hint="Maksimalno št. igralcev" />
+        android:hint="@string/dodaj_maksimalno_t_igralcev" />
     <EditText
         android:id="@+id/dolzina_igre"
         android:layout_width="match_parent"
+        android:inputType="text"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:hint="Dolžina igre" />
+        android:hint="@string/dodaj_dolzina_igre" />
     <EditText
         android:id="@+id/slika_url"
         android:layout_width="match_parent"
+        android:inputType="textUri"
         android:layout_margin="20dp"
         android:layout_height="wrap_content"
-        android:hint="slika_url" />
+        android:hint="@string/dodaj_slika_url" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -31,13 +31,13 @@ public class DodajIgro extends AppCompatActivity {
     GamenightApi gamenightApi;
     Button dodaj_igro;
     String token;
+    String uporabnisko_ime;
 
-
-    public static int sheight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences preferences = getSharedPreferences("cred", MODE_PRIVATE);
         String tokenSP = preferences.getString("cred","");
+        String usernameSP = preferences.getString("uporabnisko_ime","");
         if(Objects.equals(tokenSP, "")) {
             Log.d("cred", "token is null");
             Intent intent = new Intent(DodajIgro.this, Prijava.class);
@@ -45,6 +45,7 @@ public class DodajIgro extends AppCompatActivity {
         }
         else {
             token = tokenSP;
+            uporabnisko_ime = usernameSP;
         }
         Log.d("tag", "printing");
         super.onCreate(savedInstanceState);
@@ -74,7 +75,7 @@ public class DodajIgro extends AppCompatActivity {
                         dolzina_igre.getText().toString(),
                         slika_url.getText().toString());
                 Log.d("igra", String.valueOf(igra));
-                Call<ResponseBody> call = gamenightApi.dodajIgro("admin_monika",igra, token);
+                Call<ResponseBody> call = gamenightApi.dodajIgro(uporabnisko_ime,igra, token);
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -82,16 +83,13 @@ public class DodajIgro extends AppCompatActivity {
                         Intent intent = new Intent(DodajIgro.this, IgrePregled.class);
                         startActivity(intent);
                     }
-
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
 
                     }
                 });
-
             }
         });
-
     }
 
     @Override
@@ -100,9 +98,5 @@ public class DodajIgro extends AppCompatActivity {
         super.onStart();
 
     }
-
-
-
-
 }
 

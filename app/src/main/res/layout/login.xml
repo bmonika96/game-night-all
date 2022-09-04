@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:padding="5dp"
-        android:text="Pozdravljeni na Gamenight aplikaciji. Prosim vpišite se z uporabniškim imenom in geslom."
+        android:text="@string/prijava_pozdrav"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="15sp" />
@@ -36,7 +36,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:hint="Uporabniško ime"
+        android:hint="@string/uporabni_ko_ime"
         android:inputType="textEmailAddress" />
 
     <!--edit text for user password-->
@@ -48,7 +48,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:hint="Geslo"
+        android:hint="@string/geslo"
         android:inputType="textPassword" />
 
     <!--button to register our new user-->
@@ -60,7 +60,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:text="Prijava"
+        android:text="@string/prijava"
         android:textAllCaps="false" />
     <TextView
         android:id="@+id/prijavi_se"
@@ -70,7 +70,7 @@
         android:gravity="center_horizontal"
         android:padding="5dp"
         android:layout_below="@id/login"
-        android:text="Če si že registriran se lahko prijaviš."
+        android:text="@string/register_iz_prijave"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="14sp" />
@@ -82,10 +82,11 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        android:text="Registracija"
+        android:text="@string/prijava_registracija"
         android:textAllCaps="false"
         android:onClick="odpriRegistracija"
-        android:textSize="11sp"/>
+        android:textSize="11sp"
+        tools:ignore="UsingOnClickInXml" />
 
 </RelativeLayout>
 </LinearLayout>

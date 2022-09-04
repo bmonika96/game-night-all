@@ -9,8 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +17,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import okhttp3.ResponseBody;
@@ -37,16 +34,15 @@ public  class DodajDogodek extends AppCompatActivity{
     Spinner spinner;
     ArrayAdapter<String> adapter;
     String token;
+    String uporabnisko_ime;
 
-    public static int sheight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("tag", "printing");
         super.onCreate(savedInstanceState);
-        Log.d("tag", "printing");
         setContentView(R.layout.activity_dodaj_dogodek);
         SharedPreferences preferences = getSharedPreferences("cred", MODE_PRIVATE);
         String tokenSP = preferences.getString("cred","");
+        String usernameSP = preferences.getString("uporabnisko_ime","");
         if(Objects.equals(tokenSP, "")) {
             Log.d("cred", "token is null");
             Intent intent = new Intent(DodajDogodek.this, Prijava.class);
@@ -54,9 +50,8 @@ public  class DodajDogodek extends AppCompatActivity{
         }
         else {
             token = tokenSP;
+            uporabnisko_ime = usernameSP;
         }
-
-
         ime_skupine=findViewById(R.id.ime_skupine);
         datum=findViewById(R.id.datum);
         zmagovalec = findViewById(R.id.zmagovalec);
@@ -71,16 +66,10 @@ public  class DodajDogodek extends AppCompatActivity{
             int selectionCurrent = spinner.getSelectedItemPosition();
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                if (selectionCurrent != position){
-                    // Your code here
-                }
                 selectionCurrent= position;
             }
-
-
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                // Your code here
             }
         });
     }
@@ -130,7 +119,6 @@ public  class DodajDogodek extends AppCompatActivity{
     public void dodajDogodek(View view) {
     Dogodek dogodek = new Dogodek();
     dogodek.setDogodek(ime_skupine.getText().toString(), datum.getText().toString(),String.valueOf(spinner.getSelectedItem()),zmagovalec.getText().toString());
-    Log.d("dogodek", String.valueOf(dogodek));
     Call<ResponseBody> call = gamenightApi.dodajDogodek("admin_monika",dogodek, "YWRtaW5fbW9uaWthOmFkbWlu");
     call.enqueue(new Callback<ResponseBody>() {
         @Override
@@ -139,7 +127,6 @@ public  class DodajDogodek extends AppCompatActivity{
             Intent i = new Intent(DodajDogodek.this,DogodkiPregled.class);
             startActivity(i);
         }
-
         @Override
         public void onFailure(Call<ResponseBody> call, Throwable t) {
 

@@ -11,7 +11,7 @@
         android:padding="3dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        />
+        android:contentDescription="@string/igra_podatki_slika_url" />
 
     <TextView
         android:id="@+id/title"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:background="@color/pasice"
         android:gravity="center_horizontal"
-        android:text="ime"
+        android:text="@string/ime"
         android:textColor="@android:color/white"
         android:layout_alignParentBottom="true"
         android:textSize="25sp"

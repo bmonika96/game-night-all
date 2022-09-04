@@ -15,7 +15,7 @@
         android:layout_marginTop="50dp"
         android:gravity="center_horizontal"
         android:padding="5dp"
-        android:text="Pozdravljeni na obrazcu za registracijo"
+        android:text="@string/pozdrav_registracija"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18sp" />
@@ -28,7 +28,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
-        android:hint="Vnesite ime"
+        android:hint="@string/vnesite_ime"
         android:inputType="text" />
     <EditText
         android:id="@+id/priimek"
@@ -38,7 +38,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:hint="Vnesite priimek"
+        android:hint="@string/vnesite_priimek"
         android:inputType="text" />
     <EditText
         android:id="@+id/email"
@@ -48,7 +48,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:hint="Vnesite email"
+        android:hint="@string/vnesite_email"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -59,7 +59,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:hint="Vnesite uporabniško ime"
+        android:hint="@string/vnesite_uporabni_ko_ime"
         android:inputType="text" />
 
     <EditText
@@ -70,7 +70,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:hint="Vnesite geslo"
+        android:hint="@string/vnesite_geslo"
         android:inputType="textPassword" />
     <EditText
         android:id="@+id/ponovi_geslo"
@@ -80,7 +80,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:hint="Ponovite geslo"
+        android:hint="@string/ponovite_geslo"
         android:inputType="textPassword" />
 
     <Button
@@ -91,7 +91,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
-        android:text="Registracija"
+        android:text="@string/registracija"
         android:textAllCaps="false" />
     <TextView
         android:id="@+id/prijavi_se"
@@ -101,7 +101,7 @@
         android:gravity="center_horizontal"
         android:padding="5dp"
         android:layout_below="@id/registracija"
-        android:text="Če si že registriran se lahko prijaviš."
+        android:text="@string/registracija_prijava"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="14sp" />
@@ -113,9 +113,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
-        android:text="Nazaj na prijavo"
+        android:text="@string/nazaj_na_prijavo"
         android:onClick="odpriPrijava"
         android:textAllCaps="false"
-        android:textSize="12sp"/>
-
+        android:textSize="12sp"
+        tools:ignore="UsingOnClickInXml" />
 </RelativeLayout>

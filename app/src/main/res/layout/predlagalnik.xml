@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
     <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
     <TextView
@@ -13,7 +14,7 @@
         android:textColor="@color/black"
         android:id="@+id/naslov"
         android:layout_gravity="center"
-        android:text="Predlagalnik igre"
+        android:text="@string/predlagalnik_igre"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -24,18 +25,19 @@
         android:textColor="@color/black"
         android:id="@+id/navodilo"
         android:layout_gravity="center"
-        android:text="Pritisni gumb za predlaganje igre"
+        android:text="@string/predlagaj_igro"
         />
 
         <Button
             android:id="@+id/close_dialog_button_ok"
             android:layout_width="fill_parent"
             android:layout_height="60dp"
-            android:text="Predlagaj igro"
+            android:text="@string/predlagaj_gumb"
             android:layout_marginLeft="10dip"
             android:layout_marginRight="10dip"
             android:onClick="predlagajIgro"
-            android:layout_marginTop="10dip" />
+            android:layout_marginTop="10dip"
+            tools:ignore="UsingOnClickInXml" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +47,7 @@
         android:textColor="@color/black"
         android:id="@+id/rezultat_igra"
         android:layout_gravity="center"
-        android:text="Predlagana igra: Ni predlagane igre"
+        android:text="@string/ni_igre"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -56,7 +58,7 @@
         android:textColor="@color/black"
         android:id="@+id/kockomet"
         android:layout_gravity="center"
-        android:text="Kockomet"
+        android:text="@string/kockomet"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -67,18 +69,19 @@
         android:textColor="@color/black"
         android:id="@+id/navodilo_kocka"
         android:layout_gravity="center"
-        android:text="Pritisni na gumb za met kocke."
+        android:text="@string/pritisni_na_gumb_za_met_kocke"
         />
         <Button
             android:id="@+id/close_dialog_button_cancel"
             android:layout_width="fill_parent"
             android:layout_height="60dp"
-            android:text="Vrzi kocko"
+            android:text="@string/vrzi_kocko"
             android:onClick="vrziKocko"
             android:layout_marginLeft="10dip"
             android:layout_marginRight="10dip"
             android:layout_marginTop="10dip"
-            android:layout_marginBottom="5dip" />
+            android:layout_marginBottom="5dip"
+            tools:ignore="UsingOnClickInXml" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -89,7 +92,7 @@
         android:textColor="@color/black"
         android:id="@+id/stevilka"
         android:layout_gravity="center"
-        android:text="0"
+        android:text="@string/met"
         />
 
     </LinearLayout>

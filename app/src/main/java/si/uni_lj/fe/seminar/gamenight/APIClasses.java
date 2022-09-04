@@ -158,6 +158,26 @@ class Uporabnik {
         this.geslo = geslo;
         this.email = email;
     }
+
+    public String getIme() {
+        return ime;
+    }
+
+    public String getPriimek() {
+        return priimek;
+    }
+
+    public String getUporabnisko_ime() {
+        return uporabnisko_ime;
+    }
+
+    public String getGeslo() {
+        return geslo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }
 
 

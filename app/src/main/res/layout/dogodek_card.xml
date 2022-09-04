@@ -13,7 +13,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
 android:gravity="center_horizontal"
-        android:text="sfddfd"
+        android:text="@string/test_ime"
         android:layout_weight="1"
         />
     <TextView
@@ -23,7 +23,7 @@ android:gravity="center_horizontal"
         android:textSize="13sp"
         android:layout_weight="1"
         android:gravity="center_horizontal"
-        android:text="sfddfd" />
+        android:text="@string/test_datum" />
     <TextView
         android:id="@+id/odigrana_igra"
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@ android:gravity="center_horizontal"
         android:gravity="center_horizontal"
         android:textSize="13sp"
         android:layout_weight="1"
-        android:text="sfddfd" />
+        android:text="@string/test_igra" />
     <TextView
         android:id="@+id/zmagovalec"
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@ android:gravity="center_horizontal"
         android:gravity="center_horizontal"
         android:textSize="13sp"
         android:layout_weight="1"
-        android:text="sfddfd" />
+        android:text="@string/test_zmagovalec" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
