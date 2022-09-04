@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/ozadjemain"
+
+    android:layout_height="match_parent"
+    tools:context=".Registracija">
+
+    <TextView
+        android:id="@+id/naslov"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:text="Pozdravljeni na obrazcu za registracijo"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/ime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/naslov"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Vnesite ime"
+        android:inputType="text" />
+    <EditText
+        android:id="@+id/priimek"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ime"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Vnesite priimek"
+        android:inputType="text" />
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priimek"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Vnesite email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/uporabnisko_ime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/email"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Vnesite uporabniško ime"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/geslo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/uporabnisko_ime"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Vnesite geslo"
+        android:inputType="textPassword" />
+    <EditText
+        android:id="@+id/ponovi_geslo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/geslo"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Ponovite geslo"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/registracija"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ponovi_geslo"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:text="Registracija"
+        android:textAllCaps="false" />
+    <TextView
+        android:id="@+id/prijavi_se"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:layout_below="@id/registracija"
+        android:text="Če si že registriran se lahko prijaviš."
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+    <Button
+        android:id="@+id/nazaj"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/prijavi_se"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="20dp"
+        android:text="Nazaj na prijavo"
+        android:onClick="odpriPrijava"
+        android:textAllCaps="false"
+        android:textSize="12sp"/>
+
+</RelativeLayout>

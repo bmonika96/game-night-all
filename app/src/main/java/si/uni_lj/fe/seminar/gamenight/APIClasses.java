@@ -4,6 +4,9 @@ package si.uni_lj.fe.seminar.gamenight;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -123,6 +126,41 @@ class Dogodek {
         return zmagovalec;
     }
 }
+class LoginPodatki {
+    private String token;
+    private String duration;
+
+    public void setLogin(JSONObject response) {
+        try {
+            token = response.getString("token");
+            duration = response.getString("duration");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public String getToken() {
+        return token;
+    }
+}
+class Uporabnik {
+    private String ime;
+    private String priimek;
+    private String uporabnisko_ime;
+    private String geslo;
+    private String email;
+
+    public void setUser(String ime, String priimek, String uporabnisko_ime, String geslo, String email){
+        this.ime = ime;
+        this.priimek = priimek;
+        this.uporabnisko_ime = uporabnisko_ime;
+        this.geslo = geslo;
+        this.email = email;
+    }
+}
+
+
 
 
 

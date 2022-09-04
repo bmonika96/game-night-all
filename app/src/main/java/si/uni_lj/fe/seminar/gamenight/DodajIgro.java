@@ -1,6 +1,7 @@
 package si.uni_lj.fe.seminar.gamenight;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Objects;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -27,11 +30,22 @@ public class DodajIgro extends AppCompatActivity {
     EditText slika_url;
     GamenightApi gamenightApi;
     Button dodaj_igro;
+    String token;
 
 
     public static int sheight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences preferences = getSharedPreferences("cred", MODE_PRIVATE);
+        String tokenSP = preferences.getString("cred","");
+        if(Objects.equals(tokenSP, "")) {
+            Log.d("cred", "token is null");
+            Intent intent = new Intent(DodajIgro.this, Prijava.class);
+            startActivity(intent);
+        }
+        else {
+            token = tokenSP;
+        }
         Log.d("tag", "printing");
         super.onCreate(savedInstanceState);
         Log.d("tag", "printing");
@@ -60,7 +74,7 @@ public class DodajIgro extends AppCompatActivity {
                         dolzina_igre.getText().toString(),
                         slika_url.getText().toString());
                 Log.d("igra", String.valueOf(igra));
-                Call<ResponseBody> call = gamenightApi.dodajIgro("admin_monika",igra, "YWRtaW5fbW9uaWthOmFkbWlu");
+                Call<ResponseBody> call = gamenightApi.dodajIgro("admin_monika",igra, token);
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

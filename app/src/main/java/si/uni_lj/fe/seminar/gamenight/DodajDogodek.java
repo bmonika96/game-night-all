@@ -1,6 +1,7 @@
 package si.uni_lj.fe.seminar.gamenight;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -34,6 +36,7 @@ public  class DodajDogodek extends AppCompatActivity{
     ArrayList<String> imena = new ArrayList<String>();
     Spinner spinner;
     ArrayAdapter<String> adapter;
+    String token;
 
     public static int sheight;
     @Override
@@ -42,6 +45,16 @@ public  class DodajDogodek extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         Log.d("tag", "printing");
         setContentView(R.layout.activity_dodaj_dogodek);
+        SharedPreferences preferences = getSharedPreferences("cred", MODE_PRIVATE);
+        String tokenSP = preferences.getString("cred","");
+        if(Objects.equals(tokenSP, "")) {
+            Log.d("cred", "token is null");
+            Intent intent = new Intent(DodajDogodek.this, Prijava.class);
+            startActivity(intent);
+        }
+        else {
+            token = tokenSP;
+        }
 
 
         ime_skupine=findViewById(R.id.ime_skupine);
@@ -76,7 +89,7 @@ public  class DodajDogodek extends AppCompatActivity{
     protected void onStart() {
         Log.d("tag", "printing");
         super.onStart();
-        Call<String> call = gamenightApi.getIgre("admin_monika", "YWRtaW5fbW9uaWthOmFkbWlu");
+        Call<String> call = gamenightApi.getIgre("admin_monika", token);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {

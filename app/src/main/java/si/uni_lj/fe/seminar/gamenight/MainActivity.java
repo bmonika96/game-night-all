@@ -1,6 +1,7 @@
 package si.uni_lj.fe.seminar.gamenight;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -21,18 +22,27 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Calendar;
-
+import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
 
     TextView datum;
-    TextView igreField;
     GamenightApi gamenightApi;
 
     public static int sheight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences preferences = getSharedPreferences("cred", MODE_PRIVATE);
+        Log.d("token", preferences.getString("cred",""));
+        String token = preferences.getString("cred","");
+        if(Objects.equals(token, "")) {
+            Log.d("cred", "token is null");
+            Intent intent = new Intent(MainActivity.this, Prijava.class);
+            startActivity(intent);
+        }
+
+
         Log.d("tag", "printing");
         super.onCreate(savedInstanceState);
         Log.d("tag", "printing");
@@ -47,31 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        Log.d("tag", "printing");
         super.onStart();
-        Call<String> call = gamenightApi.getIgre("admin_monika", "YWRtaW5fbW9uaWthOmFkbWlu");
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                String result = response.body();
-                try {
-                    assert result != null;
-                    JSONArray jArray = new JSONArray(result);
-                    Log.d("object", "jobject");
-                    JSONObject oneObject = jArray.getJSONObject(1);
-                    Log.d("get1ST", "1ST");
-                    String oneObjectsItem = oneObject.getString("ime_igre");
-                    Log.d("ime", oneObjectsItem);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-
-            }
-        });
 
     }
 
@@ -99,9 +85,15 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, Predlagalnik.class);
         startActivity(intent);
     }
+    public void odjava(View view){
+        SharedPreferences preferences = getSharedPreferences("cred", 0);
+        preferences.edit().remove("cred").apply();
+        Intent intent = new Intent(this, Prijava.class);
+        intent.putExtra("finish", true);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
+        startActivity(intent);
+        finish();
 
-   // public void odpri_nov_vnos_dogodki(View view) {
-     //   Intent intent = new Intent(this, NovVnosDogodek.class);
-      //  startActivity(intent);
-    //}
+    }
+
 }

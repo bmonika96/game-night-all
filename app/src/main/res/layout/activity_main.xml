@@ -20,25 +20,27 @@
        android:background="@drawable/ozadje2"
       >
        <TextView
-           android:layout_width="wrap_content"
+           android:layout_width="match_parent"
            android:layout_height="wrap_content"
+           android:gravity="center"
            android:textSize="20sp"
            android:id="@+id/pozdrav"
            android:textColor="@color/white"
            android:textStyle="bold"
            android:paddingTop="20dp"
-           android:text="@string/pozdrav"
+           android:text="Pozdravljeni, dobrodošli v aplikaciji Gamenight. "
            />
 
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:textSize="16sp"
+           android:textSize="13sp"
            android:textStyle="bold"
            android:textColor="@color/white"
            android:id="@+id/navodilo"
            android:gravity="center"
-           android:text="@string/navodilo"
+           android:layout_margin="20dp"
+           android:text="V aplikaciji je na voljo pregled iger, dogodkov in predlagalnik, ki vam predlaga eno izmed vaših dodanih iger."
            />
 
    </LinearLayout>
@@ -50,24 +52,22 @@
     >
         <Button
             android:layout_width="200dp"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
             android:text="@string/pregled_iger"
             android:id="@+id/preglediger"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:onClick="odpriIgre"
-
-
-
-
             />
         <Button
             android:layout_width="200dp"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
             android:text="@string/pregled_dogodkov"
             android:id="@+id/novVnos"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:onClick="odpriDogodki"
@@ -76,11 +76,12 @@
             />
         <Button
             android:layout_width="200dp"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
             android:text="Predlagalnik"
             android:id="@+id/predlagalnik"
             android:layout_marginBottom="20dp"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:onClick="pojdiPredlagalnik"
@@ -103,6 +104,16 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:layout_margin="10dp"
+            />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="Odjava"
+            android:id="@+id/odjava"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:onClick="odjava"
             />
 
     </LinearLayout>
