@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/login_page"
+    android:layout_gravity="center_vertical"
+    android:layout_height="match_parent">
+
+<RelativeLayout
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_margin="20dp"
+    android:layout_height="wrap_content"
+    android:background="@color/transpwhite"
+    tools:context=".Prijava">
+
+    <!--text view for heading-->
+    <TextView
+        android:id="@+id/pozdrav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:text="Pozdravljeni na Gamenight aplikaciji. Prosim vpišite se z uporabniškim imenom in geslom."
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <!--edit text for user name-->
+    <EditText
+        android:id="@+id/uporabnisko_ime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pozdrav"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:hint="Uporabniško ime"
+        android:inputType="textEmailAddress" />
+
+    <!--edit text for user password-->
+    <EditText
+        android:id="@+id/geslo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/uporabnisko_ime"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:hint="Geslo"
+        android:inputType="textPassword" />
+
+    <!--button to register our new user-->
+    <Button
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@id/geslo"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:text="Prijava"
+        android:textAllCaps="false" />
+    <TextView
+        android:id="@+id/prijavi_se"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:padding="5dp"
+        android:layout_below="@id/login"
+        android:text="Če si že registriran se lahko prijaviš."
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+    <Button
+        android:id="@+id/nazaj"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/prijavi_se"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:text="Registracija"
+        android:textAllCaps="false"
+        android:onClick="odpriRegistracija"
+        android:textSize="11sp"/>
+
+</RelativeLayout>
+</LinearLayout>

@@ -1,6 +1,7 @@
 package si.uni_lj.fe.seminar.gamenight;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -19,6 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
 import java.util.Random;
 
 import retrofit2.Call;
@@ -31,9 +33,20 @@ public class Predlagalnik extends AppCompatActivity {
     TextView rezultat_igra;
     TextView stevilka ;
     JSONArray igre;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences preferences = getSharedPreferences("cred", MODE_PRIVATE);
+        String tokenSP = preferences.getString("cred","");
+        if(Objects.equals(tokenSP, "")) {
+            Log.d("cred", "token is null");
+            Intent intent = new Intent(Predlagalnik.this, Prijava.class);
+            startActivity(intent);
+        }
+        else {
+            token = tokenSP;
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.predlagalnik);
         rezultat_igra = findViewById(R.id.rezultat_igra);
@@ -43,7 +56,7 @@ public class Predlagalnik extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Call<String> call = gamenightApi.getIgre("admin_monika", "YWRtaW5fbW9uaWthOmFkbWlu");
+        Call<String> call = gamenightApi.getIgre("admin_monika", token);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {

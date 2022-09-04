@@ -23,10 +23,10 @@ public interface GamenightApi {
     Call<String> getDogodki(@Path("uporabnisko_ime") String uporabnisko_ime, @Header("Authorization") String basicToken);
 
     @GET("login")
-    Call<ResponseBody> getToken(@Query("username") String username, @Query("password") String password);
+    Call<LoginPodatki> login(@Header("Authorization") String basicToken);
 
-    @GET("registracija")
-    Call<String> registracija(@Body ResponseBody uporabnik);
+    @POST("registracija")
+    Call<String> registracija(@Body Uporabnik uporabnik);
 
     @POST("dogodki/{uporabnisko_ime}")
     Call<ResponseBody> dodajDogodek(@Path("uporabnisko_ime") String uporabnisko_ime, @Body Dogodek dogodek, @Header("Authorization") String basicToken);

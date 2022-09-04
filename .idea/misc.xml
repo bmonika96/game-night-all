@@ -21,11 +21,13 @@
         <entry key="app/src/main/res/layout/activity_dodaj_igro.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_dogodki.xml" value="0.18297101449275363" />
         <entry key="app/src/main/res/layout/activity_igre.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.19333953857421876" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.27007904052734377" />
         <entry key="app/src/main/res/layout/dogodek_card.xml" value="0.1" />
         <entry key="app/src/main/res/layout/igra_card.xml" value="0.1" />
         <entry key="app/src/main/res/layout/igra_podatki.xml" value="0.1013909912109375" />
+        <entry key="app/src/main/res/layout/login.xml" value="0.1546875" />
         <entry key="app/src/main/res/layout/predlagalnik.xml" value="0.18297101449275363" />
+        <entry key="app/src/main/res/layout/registracija.xml" value="0.20108695652173914" />
       </map>
     </option>
   </component>

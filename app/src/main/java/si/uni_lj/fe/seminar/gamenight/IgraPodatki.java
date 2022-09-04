@@ -36,6 +36,7 @@ public class IgraPodatki extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.igra_podatki);
         photo = findViewById(R.id.photo);
