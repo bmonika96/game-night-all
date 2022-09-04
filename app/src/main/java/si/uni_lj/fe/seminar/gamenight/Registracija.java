@@ -47,6 +47,10 @@ public class Registracija extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 String result = response.body();
+                if(result == null){
+                    Toast.makeText(Registracija.this, "Uporabniško ime že obstaja", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Toast.makeText(Registracija.this, "Registracija uspešna", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(Registracija.this, Prijava.class);
@@ -62,7 +66,6 @@ public class Registracija extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        Log.d("tag", "printing");
         super.onStart();
         registracija.setOnClickListener(v -> {
             String uporabnisko_ime_string = uporabnisko_ime.getText().toString();
